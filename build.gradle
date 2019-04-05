@@ -1,0 +1,32 @@
+apply plugin: 'java'
+
+version = '1.0'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+// Create a single jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Xendit Runnable Postgres', 
+            'Implementation-Version': version,
+            'Main-Class': 'com.albertlie.RunnablePostgres'
+    }
+
+    baseName = project.name + '-all'
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+// Get dependencies from Maven central repository
+repositories {
+    mavenCentral()
+    maven {
+        url "https://jitpack.io"
+    }    
+}
+
+// Project dependencies
+dependencies {
+    compile 'ru.yandex.qatools.embed:postgresql-embedded:2.10'    
+}
