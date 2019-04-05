@@ -28,5 +28,7 @@ repositories {
 
 // Project dependencies
 dependencies {
-    compile 'ru.yandex.qatools.embed:postgresql-embedded:2.10'    
+    compile 'ru.yandex.qatools.embed:postgresql-embedded:2.10'
+    compile 'org.slf4j:slf4j-api:1.7.5'
+    compile 'org.slf4j:slf4j-simple:1.6.4'
 }
